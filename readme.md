@@ -1,3 +1,7 @@
+## Learned the hard way:
+1. It matters where you put  `custom_data = filebase64("customdata.tpl")` as an attribute in your vm resource in Azure
+Specifically, adminuser was not being added to the docker group when provisioning the vm.
+
 ### Terraform shortcuts
 
 #### Init, plan apply
@@ -6,7 +10,6 @@
 `terrafrom plan` `terraform plan -out iaka`
 
 `terraform apply "iaka"`
-
 
 #### verify
 `terraform state list`
