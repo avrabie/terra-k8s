@@ -133,4 +133,13 @@ resource "azurerm_linux_virtual_machine" "vm1" {
   }
 }
 
+data "azurerm_public_ip" "ip-data" {
+  name                = azurerm_public_ip.pip-k8s.name
+  resource_group_name = azurerm_resource_group.rg-k8s.name
+}
+
+output "iaka" {
+  value = "${azurerm_linux_virtual_machine.vm1.name} : ${data.azurerm_public_ip.ip-data.ip_address}"
+}
+
 
