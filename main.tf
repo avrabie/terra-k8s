@@ -104,13 +104,14 @@ resource "azurerm_linux_virtual_machine" "vm1" {
   resource_group_name   = azurerm_resource_group.rg-k8s.name
   network_interface_ids = [azurerm_network_interface.nic-k8s.id]
   size                  = "Standard_B1s"
+  custom_data           = filebase64("customdata.tpl")
+
 
   os_disk {
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
 
-  custom_data = filebase64("customdata.tpl")
 
   source_image_reference {
     publisher = "Canonical"
