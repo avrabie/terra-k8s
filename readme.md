@@ -1,15 +1,21 @@
 ### Terraform shortcuts
 
-terraform init
-terrafrom plan
-terraform plan -out iaka.something
-terraform apply "iaka.something"
-terraform apply
-terraform fmt
+#### Init, plan apply
+`terraform init` `terraform fmt`
 
-terraform state list
-terraform state show <resource>
+`terrafrom plan` `terraform plan -out iaka`
 
-terraform plan -destroy
-terraform apply -destroy 
-terraform apply -replace <resource>
+`terraform apply "iaka"`
+
+
+#### verify
+`terraform state list`
+
+`terraform state show <resource>`
+
+#### Update / Destroy resources
+`terraform plan -destroy`
+
+`terraform apply -destroy`
+
+`terraform apply -replace <resource>`
