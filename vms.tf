@@ -60,7 +60,7 @@ resource "azurerm_linux_virtual_machine" "vm1" {
   location              = azurerm_resource_group.rg-k8s.location
   resource_group_name   = azurerm_resource_group.rg-k8s.name
   network_interface_ids = [azurerm_network_interface.nic-k8s.id]
-  size                  = "Standard_B1s"
+  size                  = var.vm_size
   custom_data           = filebase64("customdata.tpl")
 
 
@@ -96,7 +96,7 @@ resource "azurerm_linux_virtual_machine" "vm2" {
   location              = azurerm_resource_group.rg-k8s.location
   resource_group_name   = azurerm_resource_group.rg-k8s.name
   network_interface_ids = [azurerm_network_interface.nic-vm2.id]
-  size                  = "Standard_B1s"
+  size                  = var.vm_size
   custom_data           = filebase64("customdata.tpl")
 
 

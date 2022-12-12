@@ -22,11 +22,16 @@ sudo apt-key add apt-key.gpg
 sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 sudo apt-get update -y
 sudo apt-get install kubeadm kubelet kubectl kubernetes-cni socat -y
+
+
+# Only Master node
+#Could be that we also need to :: before kubeadm init
 sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
-
-
-#sudo usermod -aG docker ${USER} &&
-#sudo groupadd docker &&
-#sudo chmod 666 /var/run/docker.sock
-
+sudo kubeadm init
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+export KUBECONFIG=/etc/kubernetes/admin.conf
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+kubeadm token create --print-join-command
