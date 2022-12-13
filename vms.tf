@@ -61,7 +61,7 @@ resource "azurerm_linux_virtual_machine" "vm1" {
   resource_group_name   = azurerm_resource_group.rg-k8s.name
   network_interface_ids = [azurerm_network_interface.nic-k8s.id]
   size                  = var.vm_size
-  custom_data           = filebase64("customdata.tpl")
+  custom_data           = filebase64("customdata-master-node.tpl")
 
 
   os_disk {
