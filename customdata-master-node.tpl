@@ -33,6 +33,6 @@ sudo cp -i /etc/kubernetes/admin.conf /home/adminuser/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 sudo chown $(id -u):$(id -g) /home/adminuser/.kube/config
 sudo chown 1000:1000 /home/adminuser/.kube/config
-export KUBECONFIG=/etc/kubernetes/admin.conf
-sudo kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+export KUBECONFIG=/home/adminuser/.kube/config
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 kubeadm token create --print-join-command
