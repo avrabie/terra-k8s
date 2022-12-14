@@ -15,7 +15,7 @@ sudo groupadd docker
 sudo usermod -aG docker ${USER}
 sudo chmod 666 /var/run/docker.sock
 
-#install k8s
+
 sudo swapoff --all
 wget https://packages.cloud.google.com/apt/doc/apt-key.gpg
 sudo apt-key add apt-key.gpg
@@ -27,8 +27,12 @@ sudo rm /etc/containerd/config.toml
 sudo systemctl restart containerd
 sudo kubeadm init
 mkdir -p $HOME/.kube
+mkdir /home/adminuser/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo cp -i /etc/kubernetes/admin.conf /home/adminuser/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+sudo chown $(id -u):$(id -g) /home/adminuser/.kube/config
+sudo chown 1000:1000 /home/adminuser/.kube/config
 export KUBECONFIG=/etc/kubernetes/admin.conf
 sudo kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 kubeadm token create --print-join-command
