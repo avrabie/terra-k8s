@@ -1,2 +1,0 @@
-    public_ip_address               = "20.203.211.240"
-    public_ip_addresses             = [
